@@ -59,7 +59,7 @@ def find_angle(a,b,c):
     num2 = b[1] - c[1]
     den2 = b[0] - c[0]
     if den1 == 0:
-	m1 = 10000000
+	    m1 = 10000000
     else:
         m1 = float(num1/den1)
     
@@ -71,7 +71,7 @@ def find_angle(a,b,c):
     
 
     if m1*m2 == -1:
-	return 90
+	    return 90
 
     m = float((m1 - m2)/ (1+m1*m2))
     return float(math.degrees(math.atan(m)))
@@ -207,7 +207,7 @@ for i in range(0,50):
 	col = df.iloc[i]
 	col = col.values
 	name = col[40]
-	print i
+	print(i)
 	#convert coords to 20 tuples, and append them to a list of points
 	for j  in range(0,39,2):
         	t = tuple((float(col[j]/ratio),float(col[j+1]/ratio)))

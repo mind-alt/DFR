@@ -18,9 +18,9 @@ dim = 227
 tbCallBack = callbacks.TensorBoard(log_dir='./Graph', histogram_freq=0, write_graph=True, write_images=True)
 #train
 df1 = pd.read_csv('train.csv',header = None)
-print "Program started"
+print("Program started")
 X = np.stack([cv2.imread("trainimages/"+str(img)) for img in df1.iloc[:,-1]]).astype(np.float)[:, :, :, np.newaxis]
-print "Resizing done"
+print("Resizing done")
 y = np.vstack(df1.iloc[:,:-1].values)
 X_train = X / 255
 y_train = y
@@ -28,23 +28,23 @@ y_train = y
 
 #test
 df2 = pd.read_csv('test.csv',header = None)
-print "Program started"
+print("Program started")
 X = np.stack([cv2.imread("testimages/"+str(img)) for img in df2.iloc[:,-1]]).astype(np.float)[:, :, :, np.newaxis]
-print "Resizing done"
+print ("Resizing done")
 y = np.vstack(df2.iloc[:,:-1].values)
 X_test = X / 255
 y_test = y
 
 
-print "Model Started"
+print ("Model Started")
 
 X_train = X_train.reshape(3500,dim,dim,3)
 X_test = X_test.reshape(500,dim,dim,3)
 
-print "X_train.shape" + str(X_train.shape)
-print "y_train.shape" + str(y_train.shape)
-print "X_test.shape" + str(X_test.shape)
-print "y_test.shape" + str(y_test.shape)
+print ("X_train.shape" + str(X_train.shape))
+print ("y_train.shape" + str(y_train.shape))
+print ("X_test.shape" + str(X_test.shape))
+print ("y_test.shape" + str(y_test.shape))
 
 
 

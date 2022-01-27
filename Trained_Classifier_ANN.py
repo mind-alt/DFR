@@ -62,7 +62,7 @@ y_pred = scalery.transform(y_pred)
 
 
 
-print "Model Started"
+print("Model Started")
 
 
 json_file = open('classifier.json', 'r')

@@ -52,11 +52,11 @@ print("model compiled")
 
 
 def get_text(params):
-	x_svc = scaler.transform(params)
-	y_svc = svc.predict(x_svc)
-	y_svc = enc.inverse_transform(y_svc)
-	y_svc = pd.DataFrame(y_svc)
-	return y_svc.values.max()
+    x_svc = scaler.transform(params)
+    y_svc = svc.predict(x_svc)
+    y_svc = enc.inverse_transform(y_svc)
+    y_svc = pd.DataFrame(y_svc)
+    return y_svc.values.max()
 
 arr = []
 files = []
@@ -75,34 +75,34 @@ while(cap.isOpened()):
     ret, frame = cap.read()
     img = cv2.resize(frame, (1280,720), interpolation = cv2.INTER_LINEAR)	
     if ret == True:
-	img2 = img[10:710, 290:990]
-	new_img = cv2.resize(img2, (227, 227), interpolation = cv2.INTER_LINEAR)	
-	count+=1
-	arr = np.append(arr, new_img)
-	if count%50 == 0:
-		arr = arr.reshape(50,dim,dim,3)
-		arr = arr/255
-		print("predict started")
-		pred = regressor.predict(arr, batch_size = 50, verbose = 0)
-		pred = pd.DataFrame(pred)
-		params = get_params(pred)
-		text =  get_text(params)
-		files = []
-		arr = []
-		count = 0
-		cv2.imshow('Frame',frame)
-		print text
-		cv2.putText(frame,text, (100,100), font, 20, cv2.LINE_AA)
-		
+        img2 = img[10:710, 290:990]
+        new_img = cv2.resize(img2, (227, 227), interpolation = cv2.INTER_LINEAR)	
+        count+=1
+        arr = np.append(arr, new_img)
+        if count%50 == 0:
+            arr = arr.reshape(50,dim,dim,3)
+            arr = arr/255
+            print("predict started")
+            pred = regressor.predict(arr, batch_size = 50, verbose = 0)
+            pred = pd.DataFrame(pred)
+            params = get_params(pred)
+            text =  get_text(params)
+            files = []
+            arr = []
+            count = 0
+            cv2.imshow('Frame',frame)
+            print(text)
+            cv2.putText(frame,text, (100,100), font, 20, cv2.LINE_AA)
+        
         # Display the resulting frame
         else:
-		cv2.imshow('Frame',frame)
-		cv2.putText(frame,text, (100,100), font, 20, cv2.LINE_AA)
-		
+            cv2.imshow('Frame',frame)
+            cv2.putText(frame,text, (100,100), font, 20, cv2.LINE_AA)
+        
 
         # Press Q on keyboard to  exit
-        if cv2.waitKey(25) & 0xFF == ord('q'):
-            break
+            if cv2.waitKey(25) & 0xFF == ord('q'):
+                break
     # Break the loop
     else:
         break

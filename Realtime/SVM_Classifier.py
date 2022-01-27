@@ -41,7 +41,7 @@ X_test = scaler_te.transform(X_test)
 scalery_te = StandardScaler(with_mean = False).fit(y_test)
 y_test = scalery_te.transform(y_test)
 y_test = np.array(y_test).T
-print "y done"
+print ("y done")
 #predictions
 
 df = pd.read_csv('anglesratiospredictions.csv', header = None)
@@ -56,7 +56,7 @@ X_pred = scaler_te.transform(X_pred)
 scalery_pr = StandardScaler(with_mean = False).fit(y_pred)
 y_pred = scalery_te.transform(y_pred)
 y_pred = np.array(y_pred).T
-print y_pred
+print (y_pred)
 '''
 model = KNeighborsClassifier(n_neighbors=28)
 model.fit(X_train, y_train)

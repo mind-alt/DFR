@@ -16,15 +16,15 @@ from sklearn.preprocessing import MinMaxScaler
 dim = 227
 
 df2 = pd.read_csv('test.csv',header = None)
-print "Program started"
+print("Program started")
 X = np.stack([cv2.imread("testimages/"+str(img)) for img in df2.iloc[:,-1]]).astype(np.float)[:, :, :, np.newaxis]
-print "Resizing done"
+print("Resizing done")
 y = np.vstack(df2.iloc[:,:-1].values)
 X_test = X / 255
 y_test = y
 
 
-print "Model Started"
+print("Model Started")
 
 X_test = X_test.reshape(500,dim,dim,3)
 json_file = open('model.json', 'r')
